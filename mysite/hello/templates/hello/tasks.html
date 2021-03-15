@@ -1,0 +1,52 @@
+{% extends 'hello/layout.html' %}
+{% block title %}Tasks Page{% endblock %}
+{%block body%}
+    <div class= "text-center">
+        <h1>Hello from Tasks</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4" ></div>
+        <div class= "col-sm-6 col-md-6 col-lg-6">
+           <h2> Welcome to ToDo List</h2>
+            <div>
+                <form class="form-inline" method="POST" action="{%url 'tasks'%}">
+                    {%csrf_token%}
+                    <div class="form-group">
+                      <label class="sr-only">New Task</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"> <div class="glyphicon glyphicon-pencil"></div></div>
+                        <input type="text" class="form-control" id="add" placeholder="Add New Task"  name = "new">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add New</button>
+                  </form>
+            </div>
+           <table class="table table-bordered">
+                <ul class="list-group">
+                {%for Id,task in tasks.items%}
+                <li>
+                    <form class="form-inline" action="{%url 'remove' Id%}" method="POST">
+                        {%csrf_token%}
+                    <div class="list-group-item">
+                        <h3>
+                          <span name = "id"> {{id}} </span> <span name = "task">{{task}}</span>
+                        </h3>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success" >Done</button>
+                        </div>
+                    </div>
+                </form>
+                </li>
+                {%empty%}
+                <h3 class= 'text-center'>You still do not have any tasks to do</h3>
+              
+                {%endfor%}
+            </ul>
+          </table>
+       
+        </div>
+    </div>
+    <script>
+       
+    </script>
+{%endblock%}
