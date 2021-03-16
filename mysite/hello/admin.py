@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Shehata,Task
+from .models import Movie,Task
 # Register your models here.
-admin.site.register(Shehata)
 admin.site.register(Task)
+admin.site.register(Movie)

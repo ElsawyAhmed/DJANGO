@@ -1,15 +1,18 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse ,HttpResponseRedirect
-
+from hello.models import Task
+from hello.models import Movie
 # Create your views here.
 
 tasks = {'1':'Go To Finalize your exam', '2':'finish this lab'}
 author = 'Elsawy'
 
+
+
 def helloIndex(request , name):
     return HttpResponse(f'<h1>Welcome {name}</h1>')
 
-def addnew(request ):
+def addTask(request ):
     if request.POST:
         print(request)
         if request.POST.get('new') != '':
@@ -24,3 +27,22 @@ def empty(request):
 def remove(request,Id):
     tasks.pop(f'{Id}')
     return redirect('tasks')
+
+def to_watch(request):
+    return render(request , 'hello/toWatch.html',{'movies':Movie.objects.all()})
+
+def removeMovie(request , ID):
+    mov = Movie.objects.get(Id=ID)
+    mov.delete()
+    return redirect('towatch')
+
+def addMovie(request):
+    if request.POST:
+            movie = Movie(request.POST.get('movId'),request.POST.get('movTitle'),request.POST.get('movUrl'))
+            movie.save()
+    return render(request,'hello/addMovie.html')
+
+def editMovie(request,movId):
+    movie = Movie.objects.get(Id=movId)
+    return render(request,'hello/editMovie.html',{'movie':movie})
+
