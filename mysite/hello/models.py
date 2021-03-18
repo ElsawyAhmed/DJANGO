@@ -6,6 +6,17 @@ class Rate(models.Model):#=======================
     def __str__(self):
         return (f' {self.rate_value} ')
 
+class Actor(models.Model):
+    actor_name = models.CharField(max_length = 50)
+    actor_nationality = models.CharField(max_length = 20)
+    actor_personal_image = models.ImageField(upload_to = 'actors/pictures')
+    birth_date = models.DateField()
+
+    def __str__(self):
+        return (f'{self.actor_name}')
+
+
+
 class  Category(models.Model):
     category_name = models.CharField(max_length = 100)
     category_description = models.CharField(max_length = 150)
@@ -21,6 +32,7 @@ class Movie(models.Model):
     movie_file = models.FileField(upload_to = 'movies/') #--> done
     movie_category = models.ManyToManyField(Category)   #new ---> done
     movie_rate = models.OneToOneField(Rate , null = True , on_delete = models.SET_NULL)
+    movie_actors = models.ForeignKey(Actor, null = True , on_delete = models.SET_NULL)
 
     def __str__(self):
         return (f' Movie {self.title}|{self.movie_category}')
@@ -34,14 +46,6 @@ class Task(models.Model):
 
 
 #new 
-class Actor(models.Model):
-    actor_name = models.CharField(max_length = 50)
-    actor_nationality = models.CharField(max_length = 20)
-    actor_personal_image = models.ImageField(upload_to = 'actors/pictures')
-    birth_date = models.DateField()
-
-    def __str__(self):
-        return (f'{self.actor_name}')
 
 
 # class Customer(models.Model):

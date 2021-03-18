@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Movie,Task,Category,Actor,Rate
 # Register your models here.
-myModels = [Task,Actor,Rate]
+myModels = [Task , Rate]
 
 
 class MovieAdmin(admin.ModelAdmin):
@@ -15,10 +15,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
     # list_filter = ('category_name') #-->Not Valid filter by list or tuple
 
-# class MovieInline(TabularInline):
-#     model = Movie
-#     extra  = 2
-#     max_num = 5
-admin.site.register(Movie,MovieAdmin)
+class MovieInline(admin.TabularInline):
+    model = Movie
+    extra  = 2
+    max_num = 5
 
+@admin.register(Actor)
+class ActorAdmin(admin.ModelAdmin):
+    inlines = [MovieInline]
+
+
+admin.site.register(Movie,MovieAdmin)
 admin.site.register(myModels)
