@@ -1,14 +1,38 @@
 from django.db import models
 
 # Create your models here.
+class  Category(models.Model):
+    category_name = models.CharField(max_length = 100)
+    category_description = models.CharField(max_length = 150)
+
+    def __str__(self):
+        return (f' {self.category_name}  ')
+
+
 class Movie(models.Model):
     Id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=20)
     img = models.TextField()
+    movie_file = models.FileField(upload_to = 'movies/') #new
+    movie_category = models.ManyToManyField(Category)   #new
 
     def __str__(self):
-        return (f' {self.Id} ---> {self.title} ----> {self.img} ')
+        return (f' Movie {self.title} ----> {self.movie_category} ')
 
 class Task(models.Model):
     task_name = models.CharField(max_length=30)
-    task_priority = models.IntegerField()
+    task_priority = models.IntegerField() #take care
+
+    def __str__(self):
+        return (f' {self.task_name}  ')
+
+
+#new 
+class Actor(models.Model):
+    actor_name = models.CharField(max_length = 50)
+    actor_nationality = models.CharField(max_length = 20)
+    actor_personal_image = models.ImageField(upload_to = 'actors/pictures')
+    birth_date = models.DateField()
+
+    def __str__(self):
+        return (f' {self.actor_name}  ')

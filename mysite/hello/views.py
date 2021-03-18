@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse ,HttpResponseRedirect
-from hello.models import Task
-from hello.models import Movie
+from hello.models import Task, Movie, Category, Actor
+from .forms import editMovieForm
 # Create your views here.
 
 tasks = {'1':'Go To Finalize your exam', '2':'finish this lab'}
@@ -38,9 +38,11 @@ def removeMovie(request , ID):
 
 def addMovie(request):
     if request.POST:
-            movie = Movie(request.POST.get('movId'),request.POST.get('movTitle'),request.POST.get('movUrl'))
+            movie = Movie(request.POST.get('movId'),request.POST.get('movTitle')
+                        ,request.POST.get('movUrl') , request.POST.get('movfile')) 
+            
             movie.save()
-    return render(request,'hello/addMovie.html')
+    return render(request,'hello/addMovie.html',{'categories': Category.objects.all()})
 
 def editMovie(request,movId):
     movie = Movie.objects.get(Id=movId)
