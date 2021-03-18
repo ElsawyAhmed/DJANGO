@@ -16,7 +16,7 @@ def addTask(request ):
     if request.POST:
         print(request)
         if request.POST.get('new') != '':
-            tasks[f'{len(tasks)+1}'] = request.POST.get('new')
+            tasks[f'{len(tasks)+2}'] = request.POST.get('new')
             return HttpResponseRedirect('')
     
     return render(request ,'hello/tasks.html', {'tasks': tasks,'name':author})
