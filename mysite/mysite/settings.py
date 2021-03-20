@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['0.0.0.0','localhost']
 
 INSTALLED_APPS = [
     'hello',
+    'accounts',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,10 +54,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +132,5 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR , 'media/')
 MEDIA_URL = 'media/'
+CSRF_COOKIE_AGE = 86400 # the token expires after a day 
+LOGIN_REDIRECT_URL = 'index'
