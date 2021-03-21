@@ -16,7 +16,7 @@ urlpatterns = [
     path('towatch/' , views.to_watch , name = 'towatch'),
     path('removeMovie/<int:ID>', views.removeMovie , name='removeMovie' ),
     path('addMovie/' , views.addMovie, name='addMovie'),
-    path('editMovie/<int:movId>' , views.editMovie, name='editMovie'),
+    path('editMovie/<int:pk>' , views.editMovie, name='editMovie'),
     path('api/', include(router.urls)),
     path('apis/', include('hello.apis.urls'))
     # path('CRUDMovies/', include('rest_framework.urls', namespace='rest_framework'))

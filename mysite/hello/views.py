@@ -34,7 +34,7 @@ def to_watch(request):
     return render(request , 'hello/toWatch.html',{'movies':Movie.objects.all()})
 
 @login_required
-@permission_required
+# @permission_required
 def removeMovie(request , ID):
     mov = Movie.objects.get(Id=ID)
     mov.delete()
@@ -50,8 +50,8 @@ def addMovie(request):
     return render(request,'hello/addMovie.html',{'categories': Category.objects.all()})
 
 @login_required
-@permission_required
-def editMovie(request,movId):
-    movie = Movie.objects.get(Id=movId)
+# @permission_required
+def editMovie(request,pk):
+    movie = Movie.objects.get(pk=pk)
     return render(request,'hello/editMovie.html',{'movie':movie})
 
