@@ -18,6 +18,7 @@ urlpatterns = [
     path('addMovie/' , views.addMovie, name='addMovie'),
     path('editMovie/<int:movId>' , views.editMovie, name='editMovie'),
     path('api/', include(router.urls)),
+    path('apis/', include('hello.apis.urls'))
     # path('CRUDMovies/', include('rest_framework.urls', namespace='rest_framework'))
     
 ]

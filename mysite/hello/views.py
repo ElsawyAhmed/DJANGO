@@ -40,8 +40,7 @@ def removeMovie(request , ID):
     mov.delete()
     return redirect('towatch')
 
-@login_required
-@permission_required('hello.add_movie')
+
 def addMovie(request):
     if request.POST:
             movie = Movie(request.POST.get('movId'),request.POST.get('movTitle')
