@@ -154,3 +154,11 @@ user ahmed, requested the url  <WSGIRequest: GET '/hello/editMovie/3'>
 user ahmed, requested the url  <WSGIRequest: GET '/hello/editMovie/3'> 
 user ahmed, requested the url  <WSGIRequest: GET '/hello/editMovie/3'> 
 user ahmed, requested the url  <WSGIRequest: GET '/hello/editMovie/3'> 
+user ahmed, requested the url  <WSGIRequest: GET '/'> 
+user ahmed, requested the url  <WSGIRequest: GET '/favicon.ico'> 
+user ahmed, requested the url  <WSGIRequest: GET '/accounts/'> 
+user ahmed, requested the url  <WSGIRequest: GET '/accounts/login/'> 
+user ahmed, requested the url  <WSGIRequest: GET '/apis/register/'> 
+user ahmed, requested the url  <WSGIRequest: GET '/favicon.ico'> 
+user ahmed, requested the url  <WSGIRequest: GET '/hello/apis/register/'> 
+user ahmed, requested the url  <WSGIRequest: GET '/favicon.ico'> 

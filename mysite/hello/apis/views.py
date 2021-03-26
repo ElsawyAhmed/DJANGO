@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .. models import Movie
-from .serializers import MovieSerializer
+from .serializers import MovieSerializer, UserRegister
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -10,6 +10,34 @@ class MovieAPI(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
 
+@api_view(['POST'])
+def register(request):
+    serializer = UserRegister(data = request.data)
+    if serializer.is_valid():
+        try:
+            serializer.save()
+        except Exception as error:
+            return Response(
+                data = {
+                    'success' : False,
+                    'errors' : str(error)
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
+        return Response(
+            data = {
+                'success' : True,
+                'message' : 'User have been registered'
+            },
+            status = status.HTTP_201_CREATED
+        )
+    return Response(
+                data = {
+                    'success' : False,
+                    'errors' : serializer.errors
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
 
 @api_view(['GET'])
 def listAll(request):
